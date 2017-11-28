@@ -1,5 +1,13 @@
 # material-ui-schema-form
 
+This library is an ongoing re-write of Network New Technologies' [react-schema-form](https://github.com/networknt/react-schema-form).
+
+**Why re-write?**
+
+The original `react-schema-form` evolved a bit chaotically ending up becoming a subset of `material-ui` rather than agnostic react component. This repo is trying to accept said relationship and shifting focus to making sure it is understood that this library is meant for projects using `material-ui`.
+
+Also the original library has fallen behind in dependency management and its maintainers don't seem to have an upgrade anywhere on their roadmap. This re-write is meant to bring the `SchemaForm` component up to date with React 16 and Material UI v1 and move on forward from there.
+
 # Installation
 
 ```sh
