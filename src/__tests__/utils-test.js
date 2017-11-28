@@ -1,6 +1,3 @@
-/**
- * Created by steve on 11/09/15.
- */
 jest.dontMock('../utils');
 jest.dontMock('lodash');
 
@@ -112,7 +109,7 @@ describe('utils', function () {
                 'key': [
                     'overEighteen'
                 ],
-                'type': 'checkbox'
+                'type': 'toggleswitch'
             },
             {
                 'title': 'attributes',
@@ -439,138 +436,4 @@ describe('utils', function () {
         //array items
         expect(merged[0].items[0].items[0].readonly).toEqual(true);
     });
-
-    it('should select and set into objects and arrays', function() {
-        var schema = {
-            'key': [
-                'comments'
-            ],
-            'add': 'New',
-            'style': {
-                'add': 'btn-success'
-            },
-            'items': [
-                {
-                    'key': [
-                        'comments',
-                        '',
-                        'name'
-                    ],
-                    'title': 'Name',
-                    'required': true,
-                    'schema': {
-                        'title': 'Name',
-                        'type': 'string'
-                    },
-                    'ngModelOptions': {},
-                    'type': 'text'
-                },
-                {
-                    'key': [
-                        'comments',
-                        '',
-                        'email'
-                    ],
-                    'title': 'Email',
-                    'description': 'Email will be used for evil.',
-                    'schema': {
-                        'title': 'Email',
-                        'type': 'string',
-                        'pattern': '^\\S+@\\S+$',
-                        'description': 'Email will be used for evil.'
-                    },
-                    'ngModelOptions': {},
-                    'type': 'text'
-                },
-                {
-                    'key': [
-                        'comments',
-                        '',
-                        'spam'
-                    ],
-                    'type': 'checkbox',
-                    'title': 'Yes I want spam.',
-                    'condition': 'model.comments[arrayIndex].email',
-                    'schema': {
-                        'title': 'Spam',
-                        'type': 'boolean',
-                        'default': true
-                    },
-                    'ngModelOptions': {}
-                },
-                {
-                    'key': [
-                        'comments',
-                        '',
-                        'comment'
-                    ],
-                    'type': 'textarea',
-                    'title': 'Comment',
-                    'required': true,
-                    'maxlength': 20,
-                    'validationMessage': 'Don\'t be greedy!',
-                    'schema': {
-                        'title': 'Comment',
-                        'type': 'string',
-                        'maxLength': 20,
-                        'validationMessage': 'Don\'t be greedy!'
-                    },
-                    'ngModelOptions': {}
-                }
-            ],
-            'title': 'comments',
-            'required': true,
-            'schema': {
-                'type': 'array',
-                'maxItems': 2,
-                'items': {
-                    'type': 'object',
-                    'properties': {
-                        'name': {
-                            'title': 'Name',
-                            'type': 'string'
-                        },
-                        'email': {
-                            'title': 'Email',
-                            'type': 'string',
-                            'pattern': '^\\S+@\\S+$',
-                            'description': 'Email will be used for evil.'
-                        },
-                        'spam': {
-                            'title': 'Spam',
-                            'type': 'boolean',
-                            'default': true
-                        },
-                        'comment': {
-                            'title': 'Comment',
-                            'type': 'string',
-                            'maxLength': 20,
-                            'validationMessage': 'Don\'t be greedy!'
-                        }
-                    },
-                    'required': [
-                        'name',
-                        'comment'
-                    ]
-                }
-            },
-            'ngModelOptions': {},
-            'type': 'array'
-        };
-
-        var model = {
-
-        };
-        var list = utils.selectOrSet(schema, [{key: 'sub', readonly: true}]);
-
-        //sub
-        expect(merged[0].readonly).toEqual(true);
-
-        //array
-        expect(merged[0].items[0].readonly).toEqual(true);
-
-        //array items
-        expect(merged[0].items[0].items[0].readonly).toEqual(true);
-    });
-
 });

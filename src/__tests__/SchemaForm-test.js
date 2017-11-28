@@ -2,19 +2,15 @@ jest.dontMock('../SchemaForm');
 jest.dontMock('../utils');
 jest.dontMock('lodash');
 
-var React = require('react');
-var TestUtils = require('react-addons-test-utils');
-var SchemaForm = require('../SchemaForm');
+const React = require('react');
+const TestUtils = require('react-dom/test-utils');
+const ReactShallowRenderer = require('react-test-renderer/shallow');
+const SchemaForm = require('../SchemaForm');
 
 describe('SchemaForm', function() {
-
-  beforeEach(function() {
-
-  });
-
   it('shows SchemaForm', function() {
-    var shallowRenderer = TestUtils.createRenderer();
-    var cfg = {
+    const shallowRenderer = ReactShallowRenderer.createRenderer();
+    const cfg = {
       form: {},
       schema: {
         'type': 'object'
@@ -22,14 +18,13 @@ describe('SchemaForm', function() {
       model: {},
       mapper: {}
     };
-    shallowRenderer.render(
+    const result = shallowRenderer.render(
       <SchemaForm
         schema={cfg.schema}
         mapper={cfg.mapper}
       />
     );
 
-    var result = shallowRenderer.getRenderOutput();
     console.log('result = ', result.props);
     expect(result.props.children).toEqual('SchemaForm');
   });

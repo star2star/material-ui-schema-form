@@ -1,51 +1,78 @@
-/**
- * Created by steve on 22/12/15.
- */
-import React from 'react';
-var utils = require('./utils');
-var classNames = require('classnames');
+import React, { Component } from 'react';
 import ComposedComponent from './ComposedComponent';
-import DatePicker from 'material-ui/DatePicker/DatePicker';
+import { FormControl } from 'material-ui/Form';
+import Input, { InputLabel } from 'material-ui/Input';
+import DateTime from 'react-datetime';
 
-/**
- * There is no default number picker as part of Material-UI.
- * Instead, use a TextField and validate.
- */
-class Date extends React.Component {
+const utils = require('./utils');
+const classNames = require('classnames');
 
-    constructor(props) {
-        super(props);
-        this.onDatePicked = this.onDatePicked.bind(this);
-    }
+const DatePicker = props => ({
+  render: function(){
+  	const {
+  		label,
+  		dateFormat,
+  		onChange,
+	    disabled,
+	    style,
+  	} = props;
 
+	  return (<DateTime
+		  label={label}
+	    renderInput={this.renderInput}
+	    dateFormat={dateFormat || 'YYYY-MM-DD'}
+	    timeFormat={false}
+	    onChange={onChange}
+	    inputProps={{
+				disabled,
+				style,
+	    }}
+	  />);
+  },
+  renderInput: (inputProps, openCalendar) => {
+	  function clear(){
+	    inputProps.onChange({target: {value: ''}});
+	  }
 
-    onDatePicked(empty, date) {
-        this.props.onChangeValidate(date);
-    }
+	  const {
+	    id,
+	    label,
+	  } = props;
 
-    render() {
-        var value = null;
-        if (this.props && this.props.value) {
-            value = this.props.value;
-        }
+	  return (
+	    <FormControl>
+		    <InputLabel htmlFor={id}>{label}</InputLabel>
+		    <Input
+		    	{...inputProps}
+		    	id={id}
+		    	onClick={openCalendar}
+		    />
+	    </FormControl>
+	  );
+  },
+});
 
-        return (
-            <div style={{width: '100%', display: 'block'}} className={this.props.form.htmlClass}>
-                <DatePicker
-                    mode={'landscape'}
-                    autoOk={true}
-                    floatingLabelText={this.props.form.title}
-                    hintText={this.props.form.title}
-                    onChange={this.onDatePicked}
-                    onShow={null}
-                    onDismiss={null}
-                    value={value}
-                    disabled={this.props.form.readonly}
-                    style={this.props.form.style || {width: '100%'}}/>
+class FormDate extends Component {
+  render() {
+  	const {
+  		form,
+  		value,
+  		onChangeValidate,
+  	} = this.props;
 
-            </div>
-        );
-    }
+    return (
+      <div style={{width: '100%', display: 'block'}} className={form.htmlClass}>
+        <DatePicker
+        	id={form.key.slice(-1)[0]}
+          label={form.title}
+          onChange={onChangeValidate}
+          value={value}
+          disabled={form.readonly}
+          style={form.style || {width: '100%'}}
+        />
+      </div>
+    );
+  }
 }
 
-export default ComposedComponent(Date);
+export default ComposedComponent(FormDate);

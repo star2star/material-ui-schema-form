@@ -1,33 +1,72 @@
-import React from 'react';
+import React, { Component } from 'react';
 import utils from './utils';
 import classNames from 'classnames';
 import ComposedComponent from './ComposedComponent';
 
-import RadioButton from 'material-ui/RadioButton';
-import RadioButtonGroup from 'material-ui/RadioButton/RadioButtonGroup';
+import Radio from 'material-ui/Radio';
+import RadioGroup from 'material-ui/Radio/RadioGroup';
+import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
 
-class Radios extends React.Component {
+class FormRadios extends Component {
+  state = {
+    value: '',
+  };
 
-    render() {
-        let items = this.props.form.titleMap.map(function(item, index) {
-            return (
-                <RadioButton label={item.name}
-                             value={item.value}
-                             key={index}
-                             disabled={this.props.form.readonly}
-                    />
-            )
-        }.bind(this));
+  handleChange = (event, value) => {
+    this.setState({ value }, () => {
+    	this.props.onChangeValidate(event);
+    });
+  };
 
-        return (
-            <span className={this.props.form.htmlClass}>
-              <label className="control-lable">{this.props.form.title}</label>
-              <RadioButtonGroup defaultSelected={this.props.value} name={this.props.form.title} onChange={this.props.onChangeValidate}>
-                  {items}
-              </RadioButtonGroup>
-            </span>
-        );
-    }
+  componentWillMount() {
+  	this.setState({
+  		value: this.props.value,
+  	});
+  }
+
+  componentWillReceiveProps(nextProps) {
+  	this.setState({
+  		value: nextProps.value,
+  	});
+  }
+
+  render() {
+  	const {
+  		value,
+  	} = this.state;
+
+  	const {
+  		form,
+  	} = this.props;
+
+    let items = form.titleMap.map((item, index) => {
+      return (
+        <FormControlLabel
+					key={index}
+        	label={item.name}
+        	value={item.value}
+        	disabled={form.readonly}
+        	control={<Radio />}
+        />
+      );
+    });
+
+    return (
+      <span className={form.htmlClass}>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">{form.title}</FormLabel>
+          <RadioGroup
+        		name={form.title}
+            className={classes.group}
+            value={value}
+            onChange={this.handleChange}
+          >
+            {items}
+          </RadioGroup>
+        </FormControl>
+      </span>
+    );
+  }
 }
 
-export default ComposedComponent(Radios);
+export default ComposedComponent(FormRadios);
