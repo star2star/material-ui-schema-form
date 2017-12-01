@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import utils from './utils';
 import Number from './Number';
 import Text from './Text';
@@ -14,7 +14,11 @@ import _ from 'lodash';
 import SchemaForm from './SchemaForm';
 import IconButton from 'material-ui/IconButton';
 
-class Array extends Component {
+class Array extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
 	state = {
     model: utils.selectOrSet(this.props.form.key, this.props.model) || [],
   };
@@ -138,7 +142,7 @@ class Array extends Component {
             {arrays}
           </ol>
         </div>
-        <RaisedButton label={form.add || 'Add'} secondary={true} onTouchTap={this.onAppend}/>
+        <RaisedButton label={form.add || 'Add'} secondary onTouchTap={this.onAppend}/>
       </div>
     );
   }

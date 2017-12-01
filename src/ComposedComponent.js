@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 var utils = require('./utils');
 
 export default ComposedComponent => class extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   componentWillMount() {
     const value = this.defaultValue(this.props);
     const validationResult = utils.validate(this.props.form, value);

@@ -8,7 +8,7 @@ import Radios from './Radios';
 import Date from './Date';
 import Switch from './Switch';
 import Help from './Help';
-import Array from './Array';
+// import Array from './Array';
 import FieldSet from './FieldSet';
 import _ from 'lodash';
 
@@ -23,7 +23,7 @@ class SchemaForm extends Component {
     'date': Date,
     'toggleswitch': Switch,
     'help': Help,
-    'array': Array,
+    'array': () => <div />, // TODO: Implement
     'fieldset': FieldSet
   };
 
