@@ -29,16 +29,39 @@ class HomePage extends Component {
   };
 
   handleSchemaChange = value => {
+    let newSchema;
+
+    try {
+      newSchema = JSON.parse(value);
+      utils.getDefaults(newSchema);
+    } catch (err) {
+      console.log(err);
+      newSchema = {
+        invalid: true,
+      };
+    }
+
     this.setState({
       schemaJson: value,
-      schema: JSON.parse(value),
+      schema: newSchema,
     });
   };
 
   handleFormChange = value => {
+    let newForm;
+
+    try {
+      newForm = JSON.parse(value);
+    } catch (err) {
+      console.log(err);
+      newForm = [{
+        invalid: true,
+      }];
+    }
+
     this.setState({
       formJson: value,
-      form: JSON.parse(value),
+      form: newForm,
     });
   };
 
@@ -63,6 +86,11 @@ class HomePage extends Component {
       handleFormChange,
       props: {
         themeState: {
+          theme: {
+            palette: {
+              common,
+            },
+          },
           shade,
         },
       },
@@ -82,19 +110,48 @@ class HomePage extends Component {
     let modelPre = '';
     let validationPre = '';
 
+    console.log(form);
+
     if (form.length > 0) {
-      schemaForm = (
+      schemaForm = (schema.invalid || form[0].invalid)?
+      (
+        <p>
+          Invalid&nbsp;
+          {(schema.invalid)? 'schema' : ''}
+          {(schema.invalid && form[0].invalid)? ' and ' : ''}
+          {(form[0].invalid)? 'form' : ''}
+          !
+        </p>
+      )
+      :
+      (
         <SchemaForm schema={schema} form={form} model={model} onModelChange={onModelChange} />
       );
       modelPre = (
         <div>
-          <pre style={{whiteSpace: 'pre-wrap'}}>{JSON.stringify(model)}</pre>
+          <pre style={{
+            whiteSpace: 'pre-wrap',
+            border: `1px ${common.lightGrey} solid`,
+            backgroundColor: common.white,
+            color: common.purple,
+            padding: '10px',
+          }}>
+            {JSON.stringify(model)}
+          </pre>
         </div>
       );
       validationPre = (
         <div>
           <Button raised onClick={onValidate}>Validate</Button>
-          <pre style={{whiteSpace: 'pre-wrap'}}>{JSON.stringify(validationResult,undefined,2,2)}</pre>
+          <pre style={{
+            whiteSpace: 'pre-wrap',
+            border: `1px ${common.lightGrey} solid`,
+            backgroundColor: common.white,
+            color: common.purple,
+            padding: '10px',
+          }}>
+            {JSON.stringify(validationResult,undefined,2,2)}
+          </pre>
         </div>
       );
     }
