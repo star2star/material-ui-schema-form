@@ -40,7 +40,6 @@ class App extends Component {
     } = this.props;
 
     const muiTheme = (theme)? createMuiTheme(theme) : null;
-    if (muiTheme) console.log(shade, muiTheme.styles(shade));
     const ShadedStyleWrapper = (muiTheme)? withStyles(muiTheme.styles(shade))(StyleWrapper) : (<div></div>);
 
     return (

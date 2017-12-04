@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import {SchemaForm, utils} from 'material-ui-schema-form';
-import {Controlled as CodeMirror} from 'react-codemirror2'
+import {Controlled as CodeMirror} from 'react-codemirror2';
 require('codemirror/mode/javascript/javascript');
 
 import data from './data';
@@ -110,8 +110,6 @@ class HomePage extends Component {
     let modelPre = '';
     let validationPre = '';
 
-    console.log(form);
-
     if (form.length > 0) {
       schemaForm = (schema.invalid || form[0].invalid)?
       (
@@ -128,27 +126,40 @@ class HomePage extends Component {
         <SchemaForm schema={schema} form={form} model={model} onModelChange={onModelChange} />
       );
       modelPre = (
-        <div>
+        <div style={{
+          border: `1px ${common.lightGrey} solid`,
+          overflow: 'auto',
+          minWidth: '0',
+          maxWidth: '100%',
+        }}>
           <pre style={{
             whiteSpace: 'pre-wrap',
-            border: `1px ${common.lightGrey} solid`,
             backgroundColor: common.white,
             color: common.purple,
             padding: '10px',
+            overflow: 'auto',
+            minWidth: '0',
+            maxWidth: '100%',
           }}>
-            {JSON.stringify(model)}
+            {JSON.stringify(model, undefined, 2, 2)}
           </pre>
         </div>
       );
       validationPre = (
-        <div>
-          <Button raised onClick={onValidate}>Validate</Button>
+        <div style={{
+          border: `1px ${common.lightGrey} solid`,
+          overflow: 'auto',
+          minWidth: '0',
+          maxWidth: '100%',
+        }}>
           <pre style={{
             whiteSpace: 'pre-wrap',
-            border: `1px ${common.lightGrey} solid`,
             backgroundColor: common.white,
             color: common.purple,
             padding: '10px',
+            overflow: 'auto',
+            minWidth: '0',
+            maxWidth: '100%',
           }}>
             {JSON.stringify(validationResult,undefined,2,2)}
           </pre>
@@ -208,22 +219,36 @@ class HomePage extends Component {
         <div style={{
           flex: '1',
           height: '100%',
+          minWidth: '0',
+          maxWidth: '50%',
         }}>
           <Paper style={{
             height: '100%',
             padding: '10px',
+            overflow: 'auto',
+            minWidth: '0',
+            maxWidth: '100%',
           }}>
             <Typography type="headline" component="h3">
               Generated Form
             </Typography>
-            {schemaForm}
+            <Paper style={{
+              padding: '20px',
+            }}>
+              {schemaForm}
+            </Paper>
+            <hr/>
             <Typography type="headline" component="h3">
               Entered Values Model
             </Typography>
             {modelPre}
+            <hr/>
             <Typography type="headline" component="h3">
               Validation Result
             </Typography>
+            <p>
+              <Button raised onClick={onValidate} color="primary">Validate</Button>
+            </p>
             {validationPre}
           </Paper>
         </div>

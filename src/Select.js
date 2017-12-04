@@ -5,6 +5,8 @@ import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
 import Input, { InputLabel } from 'material-ui/Input';
 
+const uid = ()=>([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,a=>(a^Math.random()*16>>a/4).toString(16));
+
 class FormSelect extends React.Component {
   componentWillMount() {
     const possibleValue = this.getModelKey(this.props.model, this.props.form.key);
@@ -30,11 +32,10 @@ class FormSelect extends React.Component {
     }
   }
 
-  onSelected = (event, selectedIndex, menuItem) => {
+  onSelected = event => {
     this.setState({
-      currentValue: menuItem
+      currentValue: event.target.value
     });
-    event.target.value = menuItem;
     this.props.onChangeValidate(event);
   };
 
@@ -48,12 +49,14 @@ class FormSelect extends React.Component {
       </MenuItem>
     ));
 
+    const theUid = uid();
+
     return (
       <div className={this.props.form.htmlClass}>
         <FormControl>
-        <InputLabel htmlFor="period-dropdown">{this.props.form.title}</InputLabel>
+        <InputLabel htmlFor={`dropdown-${theUid}`}>{this.props.form.title}</InputLabel>
         <Select
-          input={<Input id="period-dropdown" />}
+          input={<Input id={`dropdown-${theUid}`} />}
           value={this.state.currentValue}
           onChange={this.onSelected}
           style={{width: '150px'}}

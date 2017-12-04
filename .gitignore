@@ -124,9 +124,5 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# Generated distribution files
-dist/
-lib/
-
 # NPM Package lock
 package-lock.json
