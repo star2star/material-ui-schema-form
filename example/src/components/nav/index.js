@@ -40,7 +40,7 @@ class Nav extends Component {
     } = this.props;
 
     const colors = {
-      navTitle: common.darkGrey,
+      navTitle: `${common.darkGrey} !important`,
     };
 
     const Styled = withStyles(styles(colors))(({classes, ...p}) => <h1 className={classes.navTitle} {...p}/>);
