@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import utils from './utils';
 import Number from './Number';
 import Text from './Text';
@@ -8,7 +8,7 @@ import Radios from './Radios';
 import Date from './Date';
 import Switch from './Switch';
 import Help from './Help';
-// import Array from './Array';
+import FormArray from './Array';
 import FieldSet from './FieldSet';
 import _ from 'lodash';
 
@@ -23,7 +23,7 @@ class SchemaForm extends Component {
     'date': Date,
     'toggleswitch': Switch,
     'help': Help,
-    'array': () => <div />, // TODO: Implement
+    'array': FormArray,
     'fieldset': FieldSet
   };
 
