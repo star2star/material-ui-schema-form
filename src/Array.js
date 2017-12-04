@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import utils from './utils';
 import Number from './Number';
 import Text from './Text';
@@ -14,12 +14,12 @@ import _ from 'lodash';
 import SchemaForm from './SchemaForm';
 import IconButton from 'material-ui/IconButton';
 
-class Array extends React.Component {
+class FormArray extends Component {
   constructor(props) {
     super(props);
   }
 
-	state = {
+  state = {
     model: utils.selectOrSet(this.props.form.key, this.props.model) || [],
   };
 
@@ -109,15 +109,15 @@ class Array extends React.Component {
   };
 
   render() {
-    //console.log('Array.render', this.props.form.items, this.props.model, this.state.model);
+    //console.log('FormArray.render', this.props.form.items, this.props.model, this.state.model);
     const arrays = [];
     const fields = [];
     const {model} = this.state;
     const {
-    	form,
-    	builder,
-    	onChange,
-    	mapper,
+      form,
+      builder,
+      onChange,
+      mapper,
     } = this.props;
     //console.log('fields', fields);
     for(let i = 0; i < model.length; i++ ) {
@@ -129,8 +129,10 @@ class Array extends React.Component {
       //console.log('forms', i, forms);
       arrays.push(
         <li key={i} className="list-group-item">
-          <IconButton iconClassName="material-icons" tooltip="Remove" onTouchTap={boundOnDelete}>clear</IconButton>
-          {forms}
+          <div style={{display: 'flex'}}>
+            {forms}
+            <IconButton onClick={boundOnDelete}>clear</IconButton>
+          </div>
         </li>
       );
     }
@@ -142,10 +144,10 @@ class Array extends React.Component {
             {arrays}
           </ol>
         </div>
-        <RaisedButton label={form.add || 'Add'} secondary onTouchTap={this.onAppend}/>
+        <Button raised onClick={this.onAppend} color="primary">{form.add || 'Add'}</Button>
       </div>
     );
   }
 }
 
-export default ComposedComponent(Array);
+export default ComposedComponent(FormArray);
