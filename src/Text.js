@@ -12,7 +12,7 @@ class FormText extends Component {
           label={this.props.form.title}
           placeholder={this.props.form.placeholder}
           helperText={this.props.error}
-          error={this.props.error}
+          error={(this.props.error)? true : false}
           onChange={this.props.onChangeValidate}
           defaultValue={this.props.value}
           disabled={this.props.form.readonly}
