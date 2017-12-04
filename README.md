@@ -1,3 +1,7 @@
+# Material UI Schema Form
+
+View [live demo](https://jeanlescure.github.io/material-ui-schema-form/)!
+
 # material-ui-schema-form
 
 This library is an ongoing re-write of Network New Technologies' [react-schema-form](https://github.com/networknt/react-schema-form).
