@@ -13,8 +13,9 @@ class FormRadios extends Component {
   };
 
   handleChange = (event, value) => {
+    console.log('event, value', event, value);
     this.setState({ value }, () => {
-    	this.props.onChangeValidate(event);
+    	this.props.onChangeValidate({target:{value}});
     });
   };
 
@@ -57,7 +58,6 @@ class FormRadios extends Component {
           <FormLabel component="legend">{form.title}</FormLabel>
           <RadioGroup
         		name={form.title}
-            className={classes.group}
             value={value}
             onChange={this.handleChange}
           >
