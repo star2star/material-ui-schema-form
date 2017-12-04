@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
   entry: ['react-hot-loader/patch', './src/index'],
   output: {
-    filename: 'dist/react-schema-form.min.js',
+    filename: 'dist/material-ui-schema-form.min.js',
     library: 'ReactSchemaForm',
     libraryTarget: 'umd'
   },
