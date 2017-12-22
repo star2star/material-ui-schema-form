@@ -33,8 +33,6 @@ class FormNumber extends Component {
         lastSuccessfulValue: e.target.value
       });
       this.props.onChangeValidate(e);
-    } else {
-        this.refs.numberField.value = this.state.lastSuccessfulValue;
     }
   };
 
@@ -49,7 +47,6 @@ class FormNumber extends Component {
           error={this.props.error}
           onChange={this.preValidationCheck}
           value={this.state.lastSuccessfulValue}
-          ref="numberField"
           disabled={this.props.form.readonly}
           style={this.props.form.style || {width: '100%'}}
         />
