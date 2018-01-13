@@ -1,5 +1,6 @@
 import React from 'react';
 import ComposedComponent from './ComposedComponent';
+import Typography from 'material-ui/Typography';
 import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
 import { FormControl } from 'material-ui/Form';
@@ -10,16 +11,18 @@ const uid = ()=>([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g,a=>(a^Math.random(
 class FormSelect extends React.Component {
   componentWillMount() {
     const possibleValue = this.getModelKey(this.props.model, this.props.form.key);
+    const currentValue = this.props.model !== undefined && typeof possibleValue === 'string' ? possibleValue : this.props.form.titleMap != null ? this.props.form.titleMap[0].value : '';
     this.setState({
-      currentValue: this.props.model !== undefined && possibleValue ? possibleValue : this.props.form.titleMap != null ? this.props.form.titleMap[0].value : '',
+      currentValue
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.model && nextProps.form.key) {
+      const possibleValue = this.getModelKey(nextProps.model, nextProps.form.key);
+      const currentValue = nextProps.model !== undefined && typeof possibleValue === 'string' ? possibleValue : nextProps.form.titleMap != null ? nextProps.form.titleMap[0].value : '';
       this.setState({
-        currentValue: this.getModelKey(nextProps.model, nextProps.form.key)
-        || (nextProps.form.titleMap != null ? nextProps.form.titleMap[0].value : '')
+        currentValue
       });
     }
   }
@@ -45,7 +48,9 @@ class FormSelect extends React.Component {
       	key={idx}
         value={item.value}
       >
-      	{item.name}
+        <Typography>
+      	  {item.name}
+        </Typography>
       </MenuItem>
     ));
 
