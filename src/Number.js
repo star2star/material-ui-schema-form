@@ -9,14 +9,16 @@ import TextField from 'material-ui/TextField';
 class FormNumber extends Component {
   componentWillMount() {
     this.setState({
-    	lastSuccessfulValue: this.props.value
+      lastSuccessfulValue: this.props.value || 0,
     });
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-    	lastSuccessfulValue: nextProps.value
-    });
+    if (nextProps.value) {
+      this.setState({
+        lastSuccessfulValue: nextProps.value,
+      });
+    }
   }
 
   isNumeric(n) {
@@ -27,10 +29,10 @@ class FormNumber extends Component {
    * Prevent the field from accepting non-numeric characters.
    * @param e
    */
-  preValidationCheck = (e) => {
+  preValidationCheck = e => {
     if (this.isNumeric(e.target.value)) {
       this.setState({
-        lastSuccessfulValue: e.target.value
+        lastSuccessfulValue: e.target.value,
       });
       this.props.onChangeValidate(e);
     }
@@ -48,7 +50,7 @@ class FormNumber extends Component {
           onChange={this.preValidationCheck}
           value={this.state.lastSuccessfulValue}
           disabled={this.props.form.readonly}
-          style={this.props.form.style || {width: '100%'}}
+          style={this.props.form.style || { width: '100%' }}
         />
       </div>
     );
