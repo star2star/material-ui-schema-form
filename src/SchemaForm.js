@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+// @flow
+
+import * as React from 'react';
+import _ from 'lodash';
 import utils from './utils';
 import Number from './Number';
 import Text from './Text';
@@ -10,9 +13,19 @@ import Switch from './Switch';
 import Help from './Help';
 import FormArray from './Array';
 import FieldSet from './FieldSet';
-import _ from 'lodash';
 
-class SchemaForm extends Component {
+type Props = {
+  onModelChange: (key: string, value: mixed) => void,
+  className: string,
+  model: any,
+  schema: any,
+  mapper: any,
+  form: any,
+  ignore: any,
+  option: any,
+};
+
+class SchemaForm extends React.Component<Props> {
   mapper = {
     number: Number,
     text: Text,
@@ -27,17 +40,22 @@ class SchemaForm extends Component {
     fieldset: FieldSet,
   };
 
-  onChange = (key, val) => {
-    // console.log('SchemaForm.onChange', key, val);
+  onChange = (key: string, val: mixed) => {
     this.props.onModelChange(key, val);
   };
 
-  builder = (form, model, index, onChange, mapper) => {
+  builder = (
+    form: any,
+    model: any,
+    index: number,
+    onChange: Function,
+    mapper: any
+  ) => {
     const type = form.type;
     const Field = this.mapper[type];
 
     if (!Field) {
-      console.log(`Invalid field: \"${form.key[0]}\"!`);
+      console.log(`Invalid field: "${form.key[0]}"!`);
       return null;
     }
 
@@ -46,8 +64,7 @@ class SchemaForm extends Component {
     }
 
     return (
-      <div
-key={index} style={{ marginTop: 10 }}>
+      <div key={index} style={{ marginTop: 10 }}>
         <Field
           model={model}
           form={form}
@@ -88,4 +105,4 @@ key={index} style={{ marginTop: 10 }}>
   }
 }
 
-module.exports = SchemaForm;
+export default SchemaForm;

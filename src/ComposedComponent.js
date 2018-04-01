@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-var utils = require('./utils');
+import utils from './utils';
 
 export default ComposedComponent => class extends Component {
   constructor(props) {

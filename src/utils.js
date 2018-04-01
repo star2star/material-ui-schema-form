@@ -575,7 +575,7 @@ function validate(form, value) {
 
 }
 
-module.exports = {
+export default  {
   traverseForm:traverseForm,
   traverseSchema: traverseSchema,
   prependRule: prependRule,

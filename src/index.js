@@ -1,3 +1,3 @@
-exports.SchemaForm = require('./SchemaForm');
-exports.utils = require('./utils');
-exports.ComposedComponent = require('./ComposedComponent');
+export SchemaForm from './SchemaForm';
+export utils from './utils';
+export ComposedComponent from './ComposedComponent';
