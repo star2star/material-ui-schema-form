@@ -1,6 +1,6 @@
 {
   "name": "material-ui-schema-form",
-  "version": "0.9.8",
+  "version": "0.9.9",
   "description": "React json schema form based on Material UI components",
   "keywords": [
     "json schema",
