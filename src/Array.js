@@ -82,8 +82,8 @@ class FormArray extends Component {
       }
     }
  
-    this.setState(()=>{
-      const newModel = [...this.state.model];
+    this.setState((prevState)=>{
+      const newModel = [...prevState.model];
       newModel.push(empty);
       this.updateModel(newModel);
       return {model: newModel}
@@ -95,8 +95,8 @@ class FormArray extends Component {
   onDelete = index => {
     // console.log('onDelete is called', index);
 
-    this.setState(()=>{
-      const newModel = this.state.model;
+    this.setState((prevState)=>{
+      const newModel = prevState.model;
       newModel.splice(index, 1);
       this.updateModel(newModel);
       return {model: newModel}
