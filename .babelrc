@@ -1,7 +1,9 @@
 {
   "presets": [
     "@babel/preset-flow",
-    "@babel/preset-stage-0",
-    "@babel/preset-react"
+   [ "@babel/preset-stage-0", {
+      "decoratorsLegacy": true}] ,
+    "@babel/preset-react",
+    
   ]
 }

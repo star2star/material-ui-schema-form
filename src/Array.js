@@ -8,6 +8,8 @@ import IconButton from 'material-ui/IconButton';
 class FormArray extends Component {
   constructor(props) {
     super(props);
+
+    this.updateModel = this.updateModel.bind(this)
   }
 
   state = {
@@ -28,6 +30,10 @@ class FormArray extends Component {
       this.onAppend();
     }
   }
+
+  updateModel = newModel => {
+    this.props.onChangeValidate(newModel);
+  };
 
   onAppend = () => {
     // console.log('onAppend is called this.state.model', this.state.model);
@@ -75,25 +81,29 @@ class FormArray extends Component {
         }
       }
     }
-    const newModel = [...this.state.model];
-    newModel.push(empty);
-    console.log({ newModel, empty });
-    this.setState({
-      model: newModel,
-    });
-    this.props.onChangeValidate(this.state.model);
+ 
+    this.setState(()=>{
+      const newModel = [...this.state.model];
+      newModel.push(empty);
+      this.updateModel(newModel);
+      return {model: newModel}
+    })
+    
     // console.log('After append this.state.model', newModel);
   };
 
   onDelete = index => {
     // console.log('onDelete is called', index);
-    const newModel = this.state.model;
-    newModel.splice(index, 1);
-    this.setState({
-      model: newModel,
-    });
-    this.props.onChangeValidate(this.state.model);
+
+    this.setState(()=>{
+      const newModel = this.state.model;
+      newModel.splice(index, 1);
+      this.updateModel(newModel);
+      return {model: newModel}
+    })
   };
+
+
 
   setIndex(index) {
     return function(form) {
