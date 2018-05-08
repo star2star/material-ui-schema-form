@@ -1,8 +1,8 @@
-# Material UI Schema Form
+# react-schema-form Demo
 
 View [live demo]( )!
 
-# material-ui-schema-form
+# react-schema-form
 
 This library is an ongoing re-write of Network New Technologies' [react-schema-form](https://github.com/networknt/react-schema-form).
 
