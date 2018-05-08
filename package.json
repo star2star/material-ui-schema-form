@@ -1,6 +1,6 @@
 {
-  "name": "material-ui-schema-form",
-  "version": "0.9.9",
+  "name": "s2s-react-schema-form",
+  "version": "1.0.0",
   "description": "React json schema form based on Material UI components",
   "keywords": [
     "json schema",
@@ -8,9 +8,11 @@
     "react",
     "react-component",
     "material-ui",
-    "form"
+    "form",
+    "s2s",
+    "Star2Star"
   ],
-  "author": "Jean M. Lescure",
+  "author": "Cory Schimmoeller",
   "license": "MIT",
   "main": "./lib/index",
   "files": [
