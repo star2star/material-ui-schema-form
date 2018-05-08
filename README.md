@@ -4,7 +4,7 @@ View [live demo]( )!
 
 # react-schema-form
 
-This library is an ongoing re-write of Network New Technologies' [react-schema-form](https://github.com/networknt/react-schema-form).
+This library is an ongoing re-write of Jeanlescure's [material-ui-schema-form](https://github.com/jeanlescure/material-ui-schema-form).
 
 **Why re-write?**
 
