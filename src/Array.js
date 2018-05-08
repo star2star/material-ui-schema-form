@@ -1,33 +1,35 @@
-import React, { Component } from 'react';
-import utils from './utils';
-import ComposedComponent from './ComposedComponent';
-import Button from 'material-ui/Button';
-import _ from 'lodash';
-import IconButton from 'material-ui/IconButton';
+import React, { Component } from "react";
+import utils from "./utils";
+import ComposedComponent from "./ComposedComponent";
+import Button from "material-ui/Button";
+import _ from "lodash";
+import IconButton from "material-ui/IconButton";
 
 class FormArray extends Component {
   constructor(props) {
     super(props);
 
-    this.updateModel = this.updateModel.bind(this)
+    this.updateModel = this.updateModel.bind(this);
   }
 
   state = {
-    model: utils.selectOrSet(this.props.form.key, this.props.model) || [],
+    model: utils.selectOrSet(this.props.form.key, this.props.model) || []
   };
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.model && nextProps.form && nextProps.form.key) {
-      this.setState({
-        model: utils.selectOrSet(nextProps.form.key, nextProps.model) || [],
-      });
-    }
-  }
 
   componentDidMount() {
     // Always start with one empty form unless configured otherwise.
     if (this.props.form.startEmpty !== true && this.state.model.length === 0) {
       this.onAppend();
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.model && nextProps.form && nextProps.form.key) {
+      this.setState(() => {
+        return {
+          model: utils.selectOrSet(nextProps.form.key, nextProps.model)
+        };
+      });
     }
   }
 
@@ -44,26 +46,26 @@ class FormArray extends Component {
       this.props.form.schema.items
     ) {
       const items = this.props.form.schema.items;
-      if (items.type && items.type.indexOf('object') !== -1) {
+      if (items.type && items.type.indexOf("object") !== -1) {
         // Check for possible defaults
         if (
           !this.props.options ||
           this.props.options.setSchemaDefaults !== false
         ) {
-          empty = typeof items.default !== 'undefined' ? items.default : empty;
+          empty = typeof items.default !== "undefined" ? items.default : empty;
 
           // Check for defaults further down in the schema.
           // If the default instance sets the new array item to something falsy, i.e. null
           // then there is no need to go further down.
           if (empty) {
             utils.traverseSchema(items, (prop, path) => {
-              if (typeof prop.default !== 'undefined') {
+              if (typeof prop.default !== "undefined") {
                 utils.selectOrSet(path, empty, prop.default);
               }
             });
           }
         }
-      } else if (items.type && items.type.indexOf('array') !== -1) {
+      } else if (items.type && items.type.indexOf("array") !== -1) {
         empty = [];
         if (
           !this.props.options ||
@@ -81,34 +83,32 @@ class FormArray extends Component {
         }
       }
     }
- 
-    this.setState((prevState)=>{
+
+    this.setState(prevState => {
       const newModel = [...prevState.model];
       newModel.push(empty);
       this.updateModel(newModel);
-      return {model: newModel}
-    })
-    
+      return { model: newModel };
+    });
+
     // console.log('After append this.state.model', newModel);
   };
 
   onDelete = index => {
     // console.log('onDelete is called', index);
 
-    this.setState((prevState)=>{
+    this.setState(prevState => {
       const newModel = prevState.model;
       newModel.splice(index, 1);
       this.updateModel(newModel);
-      return {model: newModel}
-    })
+      return { model: newModel };
+    });
   };
-
-
 
   setIndex(index) {
     return function(form) {
       if (form.key) {
-        form.key[form.key.indexOf('')] = index;
+        form.key[form.key.indexOf("")] = index;
       }
     };
   }
@@ -143,7 +143,7 @@ class FormArray extends Component {
       // console.log('forms', i, forms);
       arrays.push(
         <li key={i} className="list-group-item">
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: "flex" }}>
             {forms}
             <IconButton onClick={boundOnDelete}>clear</IconButton>
           </div>
@@ -157,7 +157,7 @@ class FormArray extends Component {
           <ol className="list-group">{arrays}</ol>
         </div>
         <Button variant="raised" onClick={this.onAppend} color="primary">
-          {form.add || 'Add'}
+          {form.add || "Add"}
         </Button>
       </div>
     );

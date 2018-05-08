@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import ComposedComponent from './ComposedComponent';
-import TextField from 'material-ui/TextField';
+import React, { Component } from "react";
+import ComposedComponent from "./ComposedComponent";
+import TextField from "material-ui/TextField";
 
 /**
  * There is no default number picker as part of Material-UI.
@@ -8,15 +8,19 @@ import TextField from 'material-ui/TextField';
  */
 class FormNumber extends Component {
   componentWillMount() {
-    this.setState({
-      lastSuccessfulValue: this.props.value || 0,
+    this.setState(() => {
+      return {
+        lastSuccessfulValue: this.props.value || 0
+      };
     });
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.value) {
-      this.setState({
-        lastSuccessfulValue: nextProps.value,
+      this.setState(() => {
+        return {
+          lastSuccessfulValue: nextProps.value
+        };
       });
     }
   }
@@ -31,9 +35,12 @@ class FormNumber extends Component {
    */
   preValidationCheck = e => {
     if (this.isNumeric(e.target.value)) {
-      this.setState({
-        lastSuccessfulValue: e.target.value,
+      this.setState(() => {
+        return {
+          lastSuccessfulValue: e.target.value
+        };
       });
+
       this.props.onChangeValidate(e);
     }
   };
@@ -50,7 +57,7 @@ class FormNumber extends Component {
           onChange={this.preValidationCheck}
           value={this.state.lastSuccessfulValue}
           disabled={this.props.form.readonly}
-          style={this.props.form.style || { width: '100%' }}
+          style={this.props.form.style || { width: "100%" }}
         />
       </div>
     );

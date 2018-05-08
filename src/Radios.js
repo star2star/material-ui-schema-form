@@ -1,53 +1,53 @@
-import React, { Component } from 'react';
-import utils from './utils';
-import classNames from 'classnames';
-import ComposedComponent from './ComposedComponent';
+import React, { Component } from "react";
+import utils from "./utils";
+import classNames from "classnames";
+import ComposedComponent from "./ComposedComponent";
 
-import Radio from 'material-ui/Radio';
-import RadioGroup from 'material-ui/Radio/RadioGroup';
-import { FormLabel, FormControl, FormControlLabel } from 'material-ui/Form';
+import Radio from "material-ui/Radio";
+import RadioGroup from "material-ui/Radio/RadioGroup";
+import { FormLabel, FormControl, FormControlLabel } from "material-ui/Form";
 
 class FormRadios extends Component {
   state = {
-    value: '',
+    value: ""
   };
 
   handleChange = (event, value) => {
-    console.log('event, value', event, value);
+    console.log("event, value", event, value);
     this.setState({ value }, () => {
-    	this.props.onChangeValidate({target:{value}});
+      this.props.onChangeValidate({ target: { value } });
     });
   };
 
   componentWillMount() {
-  	this.setState({
-  		value: this.props.value,
-  	});
+    this.setState(() => {
+      return {
+        value: this.props.value
+      };
+    });
   }
 
   componentWillReceiveProps(nextProps) {
-  	this.setState({
-  		value: nextProps.value,
-  	});
+    this.setState(() => {
+      return {
+        value: nextProps.value
+      };
+    });
   }
 
   render() {
-  	const {
-  		value,
-  	} = this.state;
+    const { value } = this.state;
 
-  	const {
-  		form,
-  	} = this.props;
+    const { form } = this.props;
 
     let items = form.titleMap.map((item, index) => {
       return (
         <FormControlLabel
-					key={index}
-        	label={item.name}
-        	value={item.value}
-        	disabled={form.readonly}
-        	control={<Radio />}
+          key={index}
+          label={item.name}
+          value={item.value}
+          disabled={form.readonly}
+          control={<Radio />}
         />
       );
     });
@@ -57,7 +57,7 @@ class FormRadios extends Component {
         <FormControl component="fieldset">
           <FormLabel component="legend">{form.title}</FormLabel>
           <RadioGroup
-        		name={form.title}
+            name={form.title}
             value={value}
             onChange={this.handleChange}
           >
