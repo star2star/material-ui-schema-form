@@ -71,7 +71,8 @@
   "scripts": {
     "lint": "eslint src",
     "preversion": "webpack -p",
-    "prepublish": "rimraf lib && babel src -d lib",
+    "build": "rimraf lib && babel src -d lib",
+    "prepublish": "npm run build",
     "test": "npm run lint && jest"
   },
   "jest": {

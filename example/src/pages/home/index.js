@@ -4,7 +4,7 @@ import {withTheme} from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import {SchemaForm, utils} from 'material-ui-schema-form';
+import {SchemaForm, utils} from 's2s-react-schema-form';
 import {Controlled as CodeMirror} from 'react-codemirror2';
 require('codemirror/mode/javascript/javascript');
 
