@@ -14,7 +14,7 @@
     "express": "4.16.2",
     "material-ui": "1.0.0-beta.22",
     "material-ui-icons": "^1.0.0-beta.17",
-    "material-ui-schema-form": "file:../",
+    "s2s-react-schema-form": "1.0.0",
     "moment": "2.19.1",
     "path": "0.12.7",
     "react": "16.0.0",
