@@ -92409,7 +92409,7 @@ let Nav = function (_Component) {
         position: 'static'
       }, void 0, _jsx(_Toolbar2.default, {}, void 0, _jsx('div', {
         style: { flex: 1 }
-      }, void 0, _jsx(NavTitle, {}, void 0, 'Material UI Schema Form')), _jsx('div', {}, void 0, _jsx(_Menu.MenuItem, {}, void 0, _jsx(_IconButton2.default, {
+      }, void 0, _jsx(NavTitle, {}, void 0, 'S2S React Schema Form')), _jsx('div', {}, void 0, _jsx(_Menu.MenuItem, {}, void 0, _jsx(_IconButton2.default, {
         onClick: this.shadeToggle
       }, void 0, _ref2)))));
     }
