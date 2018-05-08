@@ -60,7 +60,7 @@ class Nav extends Component {
       <AppBar position="static">
         <Toolbar>
           <div style={{flex: 1}}>
-            <NavTitle>Material UI Schema Form</NavTitle>
+            <NavTitle>S2S React Schema Form</NavTitle>
           </div>
           <div>
             <MenuItem>
