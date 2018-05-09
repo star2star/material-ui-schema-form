@@ -8,9 +8,9 @@ This library is an ongoing re-write of Jeanlescure's [material-ui-schema-form](h
 
 **Why re-write?**
 
-Jeanlescure's `material-ui-schema-form` was the best react json schma form library for our needs, but changes needed to be made to fit our needs. 
-The original library had side effects resulting from the use of asynchronus setState. We have update all instances of setState to use react's best practices.
-The original library did not have issues open, but ours does. So feel free to report anything you find. 
+Jeanlescure's `material-ui-schema-form` was the most current react json schma form library for our needs, but changes needed to be made to fit our needs. 
+Since the library did not have the option to submit issues we decided to fork it and implement the changes ourselves. The original library had side effects resulting from the use of asynchronus setState. We have update all instances of setState to use react's best practices.
+
 
 # Installation
 
